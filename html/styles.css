@@ -1,0 +1,57 @@
+/* Reset default margin and padding for all elements */
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a background color and padding to the body */
+body {
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the form on the page */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the label for the file input */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style the file input */
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Hover effect for the submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
