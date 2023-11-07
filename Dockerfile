@@ -21,7 +21,7 @@ RUN cmake ..
 RUN make
 
 COPY html /var/www/html
-RUN touch /var/www/html/uploads
+RUN mkdir /var/www/html/uploads
 RUN chmod 777 /var/www/html/uploads
 
 # Exposition du port 80 pour Apache
