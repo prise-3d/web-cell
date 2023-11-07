@@ -1,6 +1,9 @@
 # Utilisez une image de base Ubuntu
 FROM php:8.0-apache
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 # Mise à jour des paquets et installation des dépendances
 RUN apt-get update && apt-get install -y \
     apache2 \
@@ -21,7 +24,6 @@ RUN cmake ..
 RUN make
 
 COPY html /var/www/html
-RUN mkdir /var/www/html/uploads
 RUN chmod 777 /var/www/html/uploads
 
 # Exposition du port 80 pour Apache

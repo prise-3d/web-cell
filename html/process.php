@@ -33,9 +33,9 @@ if( $_FILES['file']['name'] != "" ) {
     $fileToSend = $imagePath['dirname'] ."/". $imagePath['filename'].".svg";
     $fileForDownload = getcwd().'/uploads/'.$imagePath['filename'].".svg";
 
-    rename($fileToSend,$fileForDownload);
+    $success = rename($fileToSend,$fileForDownload);
 
-   
+
 }
 else {
     die("No file specified!");
@@ -54,12 +54,23 @@ else {
 <li>File size: <?php echo $_FILES['file']['size'];  ?> bytes
 <li>File type: <?php echo $_FILES['file']['type'];  ?>
 </ul>
+<a href="cell.html"> back to file submission</a></li>
 
 <h1>SVG Image</h1>
-<ul>
-        <li><i class="fas fa-download"></i><a href="<?php echo './uploads/'.$imagePath['filename'].".svg" ?>" download>The link to the file</a></li>
-        <li><i class="fas fa-home"></i> <a href="cell.html"> back to file submission</a></li>
-</ul>
+
+
+<?php
+    if ($success === true) 
+    { 
+        echo "<a href=".'./uploads/'.$imagePath['filename'].'.svg'." download>Download file</a>" ;
+    }
+    else
+    {
+        echo "<b>Error during file analysis</b>" ;
+    }
+?>
+
+
 <br>
 <?php echo file_get_contents( $fileForDownload ); ?>
 
