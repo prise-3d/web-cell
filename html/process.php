@@ -1,5 +1,5 @@
 <?php
-const PROGRAMME_C = '/app/bin/cell';
+const PROGRAMME_C = '/app/bin/bin/cell';
 
 function serveSVGFile($fileForDownload) {
     // Check if the file exists
@@ -45,7 +45,7 @@ else {
 <html>
 <head>
 <title>Uploading Complete</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSA5fF5F5/f5O5F5F5F5" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <h2>Uploaded File Info:</h2>
@@ -58,9 +58,9 @@ else {
 
 <h1>SVG Image</h1>
 
-
 <?php
-    if ($success === true) 
+        
+    if ($success) 
     { 
         echo "<a href=".'./uploads/'.$imagePath['filename'].'.svg'." download>Download file</a>" ;
     }
@@ -68,8 +68,8 @@ else {
     {
         echo "<b>Error during file analysis</b>" ;
     }
-?>
 
+?>
 
 <br>
 <?php echo file_get_contents( $fileForDownload ); ?>

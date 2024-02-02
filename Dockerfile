@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Clonage du référentiel Git contenant le code C++
-RUN git clone https://gitlab.com/crrenaud/cellv1.3 /app
+RUN git clone https://gitlab.com/crrenaud/cellv1.5 /app
 
 # Compilation du code C++
 
@@ -24,8 +24,9 @@ RUN cmake ..
 RUN make
 
 COPY html /var/www/html
-RUN touch /var/www/html/uploads
+RUN mkdir /var/www/html/uploads
 RUN chmod 777 /var/www/html/uploads
+RUN mv /app/Doc/celldoc1.5.1GB.pdf /var/www/html
 
 # Exposition du port 80 pour Apache
 EXPOSE 80
