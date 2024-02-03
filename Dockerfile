@@ -26,7 +26,7 @@ RUN make
 COPY html /var/www/html
 RUN mkdir /var/www/html/uploads
 RUN chmod 777 /var/www/html/uploads
-RUN mv /app/Doc/celldoc1.5.1GB.pdf /var/www/html
+RUN mv /app/Doc/celldoconlineV1.5.1GB.pdf /var/www/html
 
 # Exposition du port 80 pour Apache
 EXPOSE 80
