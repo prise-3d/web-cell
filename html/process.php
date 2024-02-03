@@ -35,12 +35,13 @@ if( $_FILES['file']['name'] != "" ) {
     $fileToSend = $imagePath['dirname'] ."/". $imagePath['filename'].".svg";
     $fileForDownload = $curent_dir.'/uploads/'.$imagePath['filename'].".svg";
 
-    $statsToSend = $imagePath['dirname'] ."/". $imagePath['filename'].".cvs";
-    $statsForDownload = $curent_dir.'/uploads/'.$imagePath['filename'].".cvs";
+    $statsToSend = $imagePath['dirname'] ."/". $imagePath['filename'].".csv";
+    $statsForDownload = $curent_dir.'/uploads/'.$imagePath['filename'].".csv";
     
     $logToSend = $imagePath['dirname'] ."/out.log";
     $logForDownload = $curent_dir.'/uploads/'.$imagePath['filename'].".log";
 
+    rename($statsToSend,$statsForDownload);
     rename($logToSend,$logForDownload);
     $success = rename($fileToSend,$fileForDownload);
 
@@ -92,18 +93,19 @@ else {
         right: 0;
       }
 
-        /* Style for the container div */
-            .svg-container {
-            width: 100%; /* Adjust the width as needed */
-            height: auto; /* Allow the height to adjust proportionally */
-            overflow: auto; /* Enable scrolling if the SVG exceeds container dimensions */
-        }
+    /* Style for the container div */
+    .svg-container {
+        width: 100%; /* Adjust the width as needed */        
+        height: auto; /* Allow the height to adjust proportionally */
+        overflow: auto; /* Enable scrolling if the SVG exceeds container dimensions */
+    }
 
-        /* Style for the SVG itself */
-        .svg-content {
-            width: 100%; /* Take up full width of container */
-            transition: transform 0.2s; /* Add smooth transition for zoom effect */
-        }
+    /* Style for the SVG itself */
+    .svg-content {
+        object-fit: contain;
+        /*width: 100%; /* Take up full width of container */
+        /*transform: scale(1.0);        
+    }
     </style>
 </head>
 <body>
@@ -153,12 +155,12 @@ else {
     else
     {
         echo <<<HTML
+        <h3>error reading file</h3>
         <form id="downloadForm" method="get" action="">
         <button type="button" onclick="downloadLOG()">Download log file</button>
         </form>
     
         <script>
-    
         function downloadLOG() {
             document.getElementById("downloadForm").action = "./uploads/{$imagePath['filename']}.log";
             document.getElementById("downloadForm").submit();
@@ -172,7 +174,13 @@ else {
 
 
 <div class="svg-container">
-  <?php echo file_get_contents( $fileForDownload ); ?>
+    <div class="svg-content">
+  <?php 
+    $svg_content = file_get_contents($fileForDownload);
+    // Add style attribute to set width to 100%    
+    echo $svg_content; 
+  ?>
+  </div>
 </div>
 
 </body>
