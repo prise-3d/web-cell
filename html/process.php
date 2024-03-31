@@ -175,11 +175,12 @@ else {
 
 <div class="svg-container">
     <div class="svg-content">
-  <?php 
+    <?php
     $svg_content = file_get_contents($fileForDownload);
-    // Add style attribute to set width to 100%    
-    echo $svg_content; 
-  ?>
+    // Add an id attribute to the SVG element
+    $svg_content_with_id = str_replace('<svg ', '<svg id="mySvg" ', $svg_content);
+    echo $svg_content_with_id;
+    ?>
   </div>
 </div>
 
